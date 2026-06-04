@@ -218,6 +218,27 @@ body {
   overflow: hidden;
 }
 
+@media (max-width: 1024px) {
+  .hero {
+    min-height: 90vh;
+    padding: 100px 5% 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 80vh;
+    padding: 80px 5% 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 70vh;
+    padding: 60px 5% 40px;
+  }
+}
+
 .hero-bg {
   position: absolute;
   top: 0;
@@ -229,6 +250,19 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .hero-bg {
+    background-position: center center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-bg {
+    background-position: center center;
+    background-size: cover;
+  }
 }
 
 .hero-particles {
@@ -1810,10 +1844,6 @@ body {
    ============================================ */
 
 @media (max-width: 1024px) {
-  .hero {
-    min-height: 80vh;
-  }
-  
   .hero-container {
     gap: 40px;
   }
@@ -1887,11 +1917,6 @@ body {
   
   .header {
     padding: 0 5%;
-  }
-  
-  .hero {
-    padding: 100px 5% 60px;
-    min-height: 70vh;
   }
   
   .hero-container {
@@ -2017,11 +2042,6 @@ body {
 }
 
 @media (max-width: 480px) {
-  .hero {
-    padding: 80px 5% 50px;
-    min-height: 60vh;
-  }
-  
   .hero-container {
     gap: 30px;
   }
