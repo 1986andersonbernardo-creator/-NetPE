@@ -10,6 +10,7 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -18,6 +19,14 @@ body {
   color: white;
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* ============================================
@@ -39,6 +48,9 @@ body {
   --glass-border: rgba(255, 255, 255, 0.1);
   --shadow-glow: 0 0 30px rgba(0, 255, 136, 0.3);
   --shadow-card: 0 10px 40px rgba(0, 0, 0, 0.3);
+  --section-padding: 120px 6%;
+  --section-padding-tablet: 80px 5%;
+  --section-padding-mobile: 60px 4%;
 }
 
 /* ============================================
@@ -127,6 +139,7 @@ body {
   align-items: center;
   gap: 8px;
   box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+  white-space: nowrap;
 }
 
 .btn-header:hover {
@@ -160,9 +173,9 @@ body {
   background: var(--primary-green);
 }
 
-/* Mobile Menu */
+/* Mobile Menu - Improved animation */
 .mobile-menu {
-  display: none;
+  display: block;
   position: fixed;
   top: 80px;
   left: 0;
@@ -173,12 +186,16 @@ body {
   z-index: 999;
   transform: translateY(-100%);
   opacity: 0;
-  transition: all 0.3s ease;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
 }
 
 .mobile-menu.active {
   transform: translateY(0);
   opacity: 1;
+  visibility: visible;
+  pointer-events: all;
 }
 
 .mobile-nav {
@@ -218,27 +235,6 @@ body {
   overflow: hidden;
 }
 
-@media (max-width: 1024px) {
-  .hero {
-    min-height: 90vh;
-    padding: 100px 5% 60px;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero {
-    min-height: 80vh;
-    padding: 80px 5% 50px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero {
-    min-height: 70vh;
-    padding: 60px 5% 40px;
-  }
-}
-
 .hero-bg {
   position: absolute;
   top: 0;
@@ -250,19 +246,6 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   z-index: 1;
-}
-
-@media (max-width: 768px) {
-  .hero-bg {
-    background-position: center center;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-bg {
-    background-position: center center;
-    background-size: cover;
-  }
 }
 
 .hero-particles {
@@ -314,6 +297,7 @@ body {
 
 .hero-logo img {
   max-width: 500px;
+  width: 100%;
   height: auto;
   display: block;
   filter: drop-shadow(0 0 40px rgba(0, 255, 136, 0.6));
@@ -569,6 +553,7 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 10px;
+  word-break: break-word;
 }
 
 .estatistica-label {
@@ -696,6 +681,8 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .section-header p {
@@ -743,6 +730,7 @@ body {
   transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
+  max-width: 100%;
 }
 
 .card::before {
@@ -816,6 +804,7 @@ body {
   align-items: baseline;
   gap: 5px;
   margin-bottom: 15px;
+  flex-wrap: wrap;
 }
 
 .price-currency {
@@ -879,6 +868,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  text-decoration: none;
 }
 
 .btn-card:hover {
@@ -911,6 +901,7 @@ body {
   font-size: 12px;
   font-weight: 700;
   color: var(--dark-bg);
+  z-index: 3;
 }
 
 .card-badge i {
@@ -1099,12 +1090,14 @@ body {
   position: relative;
   overflow: hidden;
   padding: 20px 0;
+  width: 100%;
 }
 
 .carousel-track {
   display: flex;
   gap: 30px;
   transition: transform 0.5s ease;
+  width: 100%;
 }
 
 .carousel-btn {
@@ -1121,6 +1114,9 @@ body {
   cursor: pointer;
   z-index: 10;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .carousel-btn:hover {
@@ -1169,6 +1165,9 @@ body {
   border: 1px solid var(--glass-border);
   transition: all 0.4s ease;
   overflow: hidden;
+  min-width: 280px;
+  flex: 0 0 auto;
+  width: 100%;
 }
 
 .depoimento-photo {
@@ -1366,6 +1365,7 @@ body {
 .cobertura-map-content {
   text-align: center;
   max-width: 500px;
+  width: 100%;
 }
 
 .cobertura-map-content h3 {
@@ -1427,6 +1427,7 @@ body {
 .contato-image img {
   width: 100%;
   height: auto;
+  max-width: 100%;
   border-radius: 30px;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
   border: 2px solid rgba(0, 255, 136, 0.2);
@@ -1620,6 +1621,7 @@ body {
   color: var(--text-secondary);
   margin-bottom: 20px;
   font-size: 18px;
+  word-break: break-word;
 }
 
 .contato-action {
@@ -1840,7 +1842,7 @@ body {
 }
 
 /* ============================================
-   RESPONSIVO
+   RESPONSIVO - TABLETS (768px - 1024px)
    ============================================ */
 
 @media (max-width: 1024px) {
@@ -1900,7 +1902,15 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 50px;
   }
+  
+  .depoimento-card {
+    min-width: 240px;
+  }
 }
+
+/* ============================================
+   RESPONSIVO - TABLETS & MOBILE (768px)
+   ============================================ */
 
 @media (max-width: 768px) {
   .navbar {
@@ -1965,7 +1975,7 @@ body {
   
   .card {
     width: 100%;
-    max-width: 350px;
+    max-width: 400px;
   }
   
   .card-featured {
@@ -1999,15 +2009,19 @@ body {
   }
   
   .carousel-prev {
-    left: 0;
+    left: 5px;
   }
   
   .carousel-next {
-    right: 0;
+    right: 5px;
   }
   
   .galeria-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .galeria-image {
+    height: 280px;
   }
   
   .cobertura-cards {
@@ -2027,27 +2041,46 @@ body {
     order: -1;
   }
   
+  .contato-image img {
+    max-width: 350px;
+    margin: 0 auto;
+  }
+  
   .footer-content {
-    grid-template-columns: 1fr;
-    text-align: center;
+    grid-template-columns: 1fr 1fr;
+    text-align: left;
+    gap: 40px;
   }
   
   .social-icons {
-    justify-content: center;
+    justify-content: flex-start;
   }
   
   .estatisticas-container {
     grid-template-columns: repeat(2, 1fr);
   }
+  
+  .depoimento-card {
+    min-width: 200px;
+  }
 }
 
+/* ============================================
+   RESPONSIVO - MOBILE GRANDE (480px)
+   ============================================ */
+
 @media (max-width: 480px) {
+  .hero {
+    min-height: 60vh;
+    padding: 60px 4% 40px;
+  }
+  
   .hero-container {
     gap: 30px;
   }
   
   .hero-logo img {
-    max-width: 300px;
+    max-width: 280px;
   }
   
   .hero-slogan h3 {
@@ -2060,20 +2093,20 @@ body {
   }
   
   .hero-badge {
-    padding: 8px 16px;
-    font-size: 12px;
+    padding: 6px 14px;
+    font-size: 11px;
   }
   
   .hero-badge i {
-    font-size: 12px;
+    font-size: 11px;
   }
   
   .hero-badge span {
-    font-size: 12px;
+    font-size: 11px;
   }
   
   .hero h1 {
-    font-size: 32px;
+    font-size: 28px;
     line-height: 1.3;
   }
   
@@ -2104,7 +2137,7 @@ body {
   }
   
   .section-header h2 {
-    font-size: 28px;
+    font-size: 26px;
   }
   
   .section-header p {
@@ -2117,6 +2150,7 @@ body {
   
   .card {
     padding: 35px 25px;
+    max-width: 100%;
   }
   
   .card h3 {
@@ -2135,25 +2169,39 @@ body {
   .btn-secondary,
   .btn-large,
   .btn-outline {
-    padding: 15px 30px;
-    font-size: 15px;
+    padding: 14px 25px;
+    font-size: 14px;
   }
   
   .estatisticas {
-    padding: 60px 5%;
+    padding: 50px 4%;
+    margin-top: -60px;
   }
   
   .estatisticas-container {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
   
   .estatistica-card {
-    padding: 30px 20px;
+    padding: 25px 16px;
+  }
+  
+  .estatistica-icon {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .estatistica-icon i {
+    font-size: 24px;
   }
   
   .estatistica-number {
-    font-size: 36px;
+    font-size: 32px;
+  }
+  
+  .estatistica-label {
+    font-size: 13px;
   }
   
   .planos,
@@ -2162,7 +2210,7 @@ body {
   .galeria,
   .cobertura,
   .contato {
-    padding: 80px 5%;
+    padding: 60px 4%;
   }
   
   .beneficio-image {
@@ -2174,15 +2222,19 @@ body {
   }
   
   .galeria-image {
-    height: 250px;
+    height: 220px;
   }
   
   .cobertura-map-content h3 {
-    font-size: 24px;
+    font-size: 20px;
   }
   
   .cobertura-map-content p {
-    font-size: 14px;
+    font-size: 13px;
+  }
+  
+  .cobertura-map-overlay {
+    padding: 20px;
   }
   
   .contato-card {
@@ -2194,29 +2246,513 @@ body {
   }
   
   .contato-card p {
-    font-size: 16px;
+    font-size: 15px;
   }
   
   .btn-large {
-    padding: 16px 30px;
-    font-size: 16px;
+    padding: 14px 24px;
+    font-size: 15px;
+    width: 100%;
+    justify-content: center;
   }
   
   .footer {
-    padding: 60px 5% 20px;
+    padding: 50px 4% 20px;
   }
   
   .footer-content {
-    gap: 30px;
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 35px;
   }
   
   .footer-brand img {
     width: 120px;
   }
   
+  .social-icons {
+    justify-content: center;
+  }
+  
   .carousel-btn {
     width: 35px;
     height: 35px;
+    font-size: 13px;
+  }
+  
+  .carousel-prev {
+    left: 2px;
+  }
+  
+  .carousel-next {
+    right: 2px;
+  }
+  
+  .contato-image img {
+    max-width: 280px;
+  }
+  
+  .contato-note {
+    font-size: 12px;
+  }
+  
+  .card-image {
+    height: 150px;
+  }
+  
+  .beneficios-grid {
+    gap: 20px;
+  }
+  
+  .cobertura-cards {
+    gap: 20px;
+  }
+  
+  .contato-cards {
+    gap: 20px;
+  }
+  
+  .rating-number {
+    font-size: 36px;
+  }
+  
+  .rating-stars i {
+    font-size: 20px;
+  }
+  
+  .depoimento-card {
+    min-width: 160px;
+  }
+  
+  .depoimento-text {
     font-size: 14px;
+    padding: 8px 18px;
+  }
+  
+  .scroll-indicator {
+    bottom: 20px;
+  }
+  
+  .hero-image-wrapper {
+    min-height: 250px;
+  }
+}
+
+/* ============================================
+   RESPONSIVO - MOBILE PEQUENO (320px - 380px)
+   ============================================ */
+
+@media (max-width: 380px) {
+  .header {
+    padding: 0 3%;
+    height: 64px;
+  }
+  
+  .header.scrolled {
+    height: 60px;
+  }
+  
+  .logo img {
+    width: 100px;
+  }
+  
+  .btn-header {
+    padding: 8px 14px;
+    font-size: 12px;
+    gap: 4px;
+  }
+  
+  .btn-header span {
+    display: none;
+  }
+  
+  .mobile-menu {
+    top: 64px;
+    padding: 20px;
+  }
+  
+  .mobile-nav-link {
+    font-size: 16px;
+    padding: 12px;
+  }
+  
+  .hero {
+    min-height: 55vh;
+    padding: 60px 3% 30px;
+  }
+  
+  .hero-logo img {
+    max-width: 220px;
+  }
+  
+  .hero-slogan h3 {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+  
+  .hero h1 {
+    font-size: 22px;
+  }
+  
+  .hero-subtitle {
+    font-size: 13px;
+  }
+  
+  .hero-benefit {
+    font-size: 12px;
+  }
+  
+  .section-tag {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+  
+  .section-header h2 {
+    font-size: 22px;
+  }
+  
+  .section-header p {
+    font-size: 13px;
+  }
+  
+  .card {
+    padding: 28px 18px;
+  }
+  
+  .card h3 {
+    font-size: 24px;
+  }
+  
+  .price-value {
+    font-size: 34px;
+  }
+  
+  .price-currency {
+    font-size: 20px;
+  }
+  
+  .card-features {
+    margin-bottom: 20px;
+  }
+  
+  .feature-item {
+    font-size: 13px;
+    padding: 10px 0;
+  }
+  
+  .feature-item i {
+    font-size: 12px;
+  }
+  
+  .btn-card {
+    padding: 14px;
+    font-size: 14px;
+  }
+  
+  .estatisticas {
+    padding: 40px 3%;
+    margin-top: -40px;
+  }
+  
+  .estatisticas-container {
+    gap: 12px;
+  }
+  
+  .estatistica-card {
+    padding: 20px 12px;
+    border-radius: 16px;
+  }
+  
+  .estatistica-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 14px;
+  }
+  
+  .estatistica-icon i {
+    font-size: 20px;
+  }
+  
+  .estatistica-number {
+    font-size: 26px;
+  }
+  
+  .estatistica-label {
+    font-size: 11px;
+  }
+  
+  .planos,
+  .beneficios,
+  .depoimentos,
+  .galeria,
+  .cobertura,
+  .contato {
+    padding: 50px 3%;
+  }
+  
+  .beneficio h3 {
+    font-size: 18px;
+  }
+  
+  .beneficio p {
+    font-size: 13px;
+    padding: 0 16px 20px;
+  }
+  
+  .beneficio-image {
+    height: 140px;
+  }
+  
+  .galeria-image {
+    height: 200px;
+  }
+  
+  .cobertura-card {
+    padding: 30px 20px;
+  }
+  
+  .cobertura-card h3 {
+    font-size: 20px;
+  }
+  
+  .cobertura-map-content h3 {
+    font-size: 18px;
+  }
+  
+  .cobertura-map-content p {
+    font-size: 12px;
+  }
+  
+  .btn-outline {
+    padding: 12px 20px;
+    font-size: 13px;
+  }
+  
+  .contato-card {
+    padding: 24px 16px;
+  }
+  
+  .contato-card h3 {
+    font-size: 16px;
+  }
+  
+  .contato-card p {
+    font-size: 14px;
+  }
+  
+  .contato-icon {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .contato-icon i {
+    font-size: 24px;
+  }
+  
+  .btn-large {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+  
+  .footer {
+    padding: 40px 3% 16px;
+  }
+  
+  .footer-content {
+    gap: 28px;
+  }
+  
+  .footer-brand img {
+    width: 100px;
+  }
+  
+  .footer-brand p {
+    font-size: 13px;
+  }
+  
+  .footer-links h4,
+  .footer-social h4 {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .footer-links a {
+    font-size: 13px;
+  }
+  
+  .social-icons a {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .social-icons a i {
+    font-size: 16px;
+  }
+  
+  .depoimento-card {
+    min-width: 140px;
+  }
+  
+  .depoimento-text {
+    font-size: 13px;
+    padding: 6px 14px;
+  }
+  
+  .depoimento-stars {
+    padding: 14px 18px 8px;
+  }
+  
+  .depoimento-stars i {
+    font-size: 15px;
+  }
+  
+  .depoimento-author {
+    padding: 10px 18px 18px;
+  }
+  
+  .author-name {
+    font-size: 14px;
+  }
+  
+  .author-plan {
+    font-size: 12px;
+  }
+  
+  .carousel-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+  
+  .carousel-prev {
+    left: 1px;
+  }
+  
+  .carousel-next {
+    right: 1px;
+  }
+  
+  .rating-overview {
+    padding: 20px;
+  }
+  
+  .rating-number {
+    font-size: 32px;
+  }
+  
+  .rating-stars i {
+    font-size: 18px;
+  }
+  
+  .rating-count {
+    font-size: 13px;
+  }
+  
+  .contato-image img {
+    max-width: 240px;
+  }
+  
+  .contato-note {
+    font-size: 11px;
+  }
+  
+  .hero-image-wrapper {
+    min-height: 200px;
+  }
+  
+  .card-badge {
+    top: 12px;
+    right: 12px;
+    padding: 4px 12px;
+    font-size: 10px;
+  }
+}
+
+/* ============================================
+   RESPONSIVO - DESKTOP MÉDIO (1024px - 1366px)
+   ============================================ */
+
+@media (min-width: 1025px) and (max-width: 1366px) {
+  .hero-container {
+    gap: 50px;
+  }
+  
+  .hero-logo img {
+    max-width: 480px;
+  }
+  
+  .hero h1 {
+    font-size: 52px;
+  }
+  
+  .card {
+    width: 330px;
+  }
+  
+  .galeria-grid {
+    gap: 25px;
+  }
+}
+
+/* ============================================
+   RESPONSIVO - LANDSCAPE MOBILE
+   ============================================ */
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: 120vh;
+    padding: 80px 4% 40px;
+  }
+  
+  .hero-logo img {
+    max-width: 200px;
+  }
+  
+  .hero-slogan h3 {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+  
+  .hero h1 {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+  
+  .scroll-indicator {
+    display: none;
+  }
+  
+  .section-header {
+    margin-bottom: 30px;
+  }
+  
+  .section-header h2 {
+    font-size: 24px;
+  }
+}
+
+/* ============================================
+   RESPONSIVO - PRINT
+   ============================================ */
+
+@media print {
+  .header,
+  .mobile-menu,
+  .mobile-menu-btn,
+  .scroll-indicator,
+  .carousel-btn {
+    display: none !important;
+  }
+  
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .gradient-text,
+  .section-header h2,
+  .estatistica-number {
+    -webkit-text-fill-color: #00a2ff;
+    color: #00a2ff;
   }
 }
